@@ -14,6 +14,15 @@
 		A5BDEA6C2B53538A0001A122 /* Regular_Bessel_Function_ObservationTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = A5BDEA6B2B53538A0001A122 /* Regular_Bessel_Function_ObservationTests.swift */; };
 		A5BDEA762B53538A0001A122 /* Regular_Bessel_Function_ObservationUITests.swift in Sources */ = {isa = PBXBuildFile; fileRef = A5BDEA752B53538A0001A122 /* Regular_Bessel_Function_ObservationUITests.swift */; };
 		A5BDEA782B53538A0001A122 /* Regular_Bessel_Function_ObservationUITestsLaunchTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = A5BDEA772B53538A0001A122 /* Regular_Bessel_Function_ObservationUITestsLaunchTests.swift */; };
+		A5BDEA852B5353F70001A122 /* Operators.swift in Sources */ = {isa = PBXBuildFile; fileRef = A5BDEA842B5353F70001A122 /* Operators.swift */; };
+		A5BDEA862B5353F70001A122 /* Operators.swift in Sources */ = {isa = PBXBuildFile; fileRef = A5BDEA842B5353F70001A122 /* Operators.swift */; };
+		A5BDEA872B5353F70001A122 /* Operators.swift in Sources */ = {isa = PBXBuildFile; fileRef = A5BDEA842B5353F70001A122 /* Operators.swift */; };
+		A5BDEA892B5354A80001A122 /* Bessel Functions Calculator.swift in Sources */ = {isa = PBXBuildFile; fileRef = A5BDEA882B5354A80001A122 /* Bessel Functions Calculator.swift */; };
+		A5BDEA8A2B5354A80001A122 /* Bessel Functions Calculator.swift in Sources */ = {isa = PBXBuildFile; fileRef = A5BDEA882B5354A80001A122 /* Bessel Functions Calculator.swift */; };
+		A5BDEA8B2B5354A80001A122 /* Bessel Functions Calculator.swift in Sources */ = {isa = PBXBuildFile; fileRef = A5BDEA882B5354A80001A122 /* Bessel Functions Calculator.swift */; };
+		A5BDEA8D2B5443C90001A122 /* ActorArray.swift in Sources */ = {isa = PBXBuildFile; fileRef = A5BDEA8C2B5443C90001A122 /* ActorArray.swift */; };
+		A5BDEA8E2B5443C90001A122 /* ActorArray.swift in Sources */ = {isa = PBXBuildFile; fileRef = A5BDEA8C2B5443C90001A122 /* ActorArray.swift */; };
+		A5BDEA8F2B5443C90001A122 /* ActorArray.swift in Sources */ = {isa = PBXBuildFile; fileRef = A5BDEA8C2B5443C90001A122 /* ActorArray.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -45,6 +54,9 @@
 		A5BDEA712B53538A0001A122 /* Regular-Bessel-Function-ObservationUITests.xctest */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; path = "Regular-Bessel-Function-ObservationUITests.xctest"; sourceTree = BUILT_PRODUCTS_DIR; };
 		A5BDEA752B53538A0001A122 /* Regular_Bessel_Function_ObservationUITests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Regular_Bessel_Function_ObservationUITests.swift; sourceTree = "<group>"; };
 		A5BDEA772B53538A0001A122 /* Regular_Bessel_Function_ObservationUITestsLaunchTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Regular_Bessel_Function_ObservationUITestsLaunchTests.swift; sourceTree = "<group>"; };
+		A5BDEA842B5353F70001A122 /* Operators.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Operators.swift; sourceTree = "<group>"; };
+		A5BDEA882B5354A80001A122 /* Bessel Functions Calculator.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "Bessel Functions Calculator.swift"; sourceTree = "<group>"; };
+		A5BDEA8C2B5443C90001A122 /* ActorArray.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ActorArray.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -97,6 +109,9 @@
 			children = (
 				A5BDEA592B5353890001A122 /* Regular_Bessel_Function_ObservationApp.swift */,
 				A5BDEA5B2B5353890001A122 /* ContentView.swift */,
+				A5BDEA8C2B5443C90001A122 /* ActorArray.swift */,
+				A5BDEA842B5353F70001A122 /* Operators.swift */,
+				A5BDEA882B5354A80001A122 /* Bessel Functions Calculator.swift */,
 				A5BDEA5D2B53538A0001A122 /* Assets.xcassets */,
 				A5BDEA5F2B53538A0001A122 /* Regular_Bessel_Function_Observation.entitlements */,
 				A5BDEA602B53538A0001A122 /* Preview Content */,
@@ -260,7 +275,10 @@
 			buildActionMask = 2147483647;
 			files = (
 				A5BDEA5C2B5353890001A122 /* ContentView.swift in Sources */,
+				A5BDEA8D2B5443C90001A122 /* ActorArray.swift in Sources */,
 				A5BDEA5A2B5353890001A122 /* Regular_Bessel_Function_ObservationApp.swift in Sources */,
+				A5BDEA852B5353F70001A122 /* Operators.swift in Sources */,
+				A5BDEA892B5354A80001A122 /* Bessel Functions Calculator.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -269,6 +287,9 @@
 			buildActionMask = 2147483647;
 			files = (
 				A5BDEA6C2B53538A0001A122 /* Regular_Bessel_Function_ObservationTests.swift in Sources */,
+				A5BDEA8A2B5354A80001A122 /* Bessel Functions Calculator.swift in Sources */,
+				A5BDEA862B5353F70001A122 /* Operators.swift in Sources */,
+				A5BDEA8E2B5443C90001A122 /* ActorArray.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -277,7 +298,10 @@
 			buildActionMask = 2147483647;
 			files = (
 				A5BDEA782B53538A0001A122 /* Regular_Bessel_Function_ObservationUITestsLaunchTests.swift in Sources */,
+				A5BDEA8F2B5443C90001A122 /* ActorArray.swift in Sources */,
 				A5BDEA762B53538A0001A122 /* Regular_Bessel_Function_ObservationUITests.swift in Sources */,
+				A5BDEA872B5353F70001A122 /* Operators.swift in Sources */,
+				A5BDEA8B2B5354A80001A122 /* Bessel Functions Calculator.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
