@@ -54,7 +54,7 @@ struct ContentView: View {
     
     func calculateBesselFunc()   {
 
-    let xmax = 16.0                     /* max of x  */
+    let xmax = 26.0                     /* max of x  */
     let xmin = 0.1                     /* min of x >0  */
     let step = 0.1                      /* delta x  */
     let order = totalInput!                      /* order of Bessel function */
@@ -75,8 +75,8 @@ struct ContentView: View {
     Task{
     
         
-            let _ = await withTaskGroup(of: Int.self /* this is the return from the taskGroup*/,
-                                                               returning: [Int].self /* this is the return of all of the results */,
+            let _ = await withTaskGroup(of: Void.self /* this is the return from the taskGroup*/,
+                                                               returning: Void.self /* this is the return of all of the results */,
                                                                body: { taskGroup in  /*This is the body of the task*/
                 
                 // We can use `taskGroup` to spawn child tasks here.
@@ -88,7 +88,7 @@ struct ContentView: View {
                         await calculateUpwardDownwardBessel(index: index, step: step, xmin: xmin, order: order, start: start)
                         
                         
-                        return index /* this is the return from the taskGroup*/
+                       // return index /* this is the return from the taskGroup*/
                         
                     }
                     
@@ -97,15 +97,15 @@ struct ContentView: View {
                 
                 
                 // Collate the results of all child tasks
-                var combinedTaskResults :[Int] = []
-                for await result in taskGroup {
+               // var combinedTaskResults :[Int] = []
+              //  for await result in taskGroup {
                     
-                    combinedTaskResults.append(result)
-                }
+              //      combinedTaskResults.append(result)
+              //  }
                 
                 
                 
-                return combinedTaskResults  /* this is the return from the result collation */
+              //  return combinedTaskResults  /* this is the return from the result collation */
                 
             })
             
