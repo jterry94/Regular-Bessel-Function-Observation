@@ -42,6 +42,7 @@ struct ContentView: View {
                 .padding()
             
             }
+               
         }
         
     }
@@ -49,85 +50,94 @@ struct ContentView: View {
     
     func calculateBesselFunc()   {
 
-    //let xmax = 16.0                     /* max of x  */
-        let xmax = 0.7                     /* max of x  */
+    let xmax = 16.0                     /* max of x  */
     let xmin = 0.1                     /* min of x >0  */
     let step = 0.1                      /* delta x  */
-    let order = totalInput ?? 0                      /* order of Bessel function */
+    let order = totalInput ?? 5                      /* order of Bessel function */
     let start = order+25                      /* used for downward algorithm */
     //var x = 0.0
     var maxIndex = 0
-        
-    let myResults = ActorArray()
         
     besselResultArray.removeAll()
         
     guess = String(format: "J%d(x)\n", order)
     maxIndex = Int(((xmax-xmin)/step))+1
 
-    for index in (0...maxIndex)
-    {
-        
-        calculateUpwardDownwardBessel(index: index, step: step, xmin: xmin, order: order, start: start, myResults: myResults)
-        
-       /*
-        let resultsOfTaskCalculation = await withTaskGroup(of: (counter: Int, value: Double).self /* this is the return from the taskGroup*/,
-            returning: [(counter: Int, value: Double)].self /* this is the return of all of the results */,
-            body: { taskGroup in  /*This is the body of the task*/
-            
-            // We can use `taskGroup` to spawn child tasks here.
-            
-            taskGroup.addTask {
-                
-                //Create a new instance of the Calculator object so that each has it's own calculating function to avoid potential issues with reentrancy problem
-                let downwardResult = await calculateUpwardDownwardBessel(index: index, step: step, xmin: xmin, order: order, start: start)
-                
-                
-                return (downwardResult)  /* this is the return from the taskGroup*/
-                
-            }
-            
-                
-            
-            
-            
-            // Collate the results of all child tasks
-            var combinedTaskResults :[(counter: Int, value: Double)] = []
-            for await result in taskGroup {
-                
-                combinedTaskResults.append(result)
-            }
-            
-            return combinedTaskResults  /* this is the return from the result collation */
-            
-        })
-        
-        //Do whatever processing that you need with the returned results of all of the child tasks here.
-        
-        // Sort the results based upon the direction of the result
-        let sortedCombinedResults = resultsOfTaskCalculation.sorted(by: { $0.0 > $1.0 })
-        
-        
-        
-        await whateverneedsToBeUpdated(array: sortedCombinedResults)
-
-        
+    let theMaxIndex = maxIndex
+    
+    Task{
     
         
-    
-         
-      */
+            let resultsOfTaskCalculation = await withTaskGroup(of: Int.self /* this is the return from the taskGroup*/,
+                                                               returning: [Int].self /* this is the return of all of the results */,
+                                                               body: { taskGroup in  /*This is the body of the task*/
+                
+                // We can use `taskGroup` to spawn child tasks here.
+                for index in (0...theMaxIndex)
+                {
+                    taskGroup.addTask {
+                        
+                        //Start the calculation
+                        await calculateUpwardDownwardBessel(index: index, step: step, xmin: xmin, order: order, start: start)
+                        
+                        
+                        return index /* this is the return from the taskGroup*/
+                        
+                    }
+                    
+                }
+                
+                
+                
+                // Collate the results of all child tasks
+                var combinedTaskResults :[Int] = []
+                for await result in taskGroup {
+                    
+                    combinedTaskResults.append(result)
+                }
+                
+                
+                
+                return combinedTaskResults  /* this is the return from the result collation */
+                
+            })
+            
+            //Do whatever processing that you need with the returned results of all of the child tasks here.
+            
+            // Sort the results based upon the direction of the result
+            let sortedFinishedResults = besselResultArray.sorted(by: { $0.1 < $1.1 })
+            
+            await clearBesselArray()
         
+            await updateBesselArray(array: sortedFinishedResults)
+            
+                    var guessString = ""
+        
+                    for item in sortedFinishedResults{
+        
+        
+                        guessString += String(format: "x = %f", item.xValue)
+                        guessString += " "
+                        guessString += item.direction
+                        guessString += " "
+                        guessString += String(format: "Bessel = %7.5e", item.besselValue)
+                        guessString += "\n"
+        
+        
+                    }
+        
+        // Display the sorted text in the GUI
+                   
+                    await updateGUI(text: guessString)
+           
+            
+            
+        }
+        
+    
     }
-        
-
-    }
     
-    func calculateUpwardDownwardBessel(index: Int, step: Double, xmin: Double, order: Int, start: Int, myResults: ActorArray)  {
-        
-        
-        
-        Task{
+    func calculateUpwardDownwardBessel(index: Int, step: Double, xmin: Double, order: Int, start: Int) async {
             
             
             let resultsOfTaskCalculation = await withTaskGroup(of: (direction: String, xValue: Double, order: Int, start: Int, besselValue: Double).self /* this is the return from the taskGroup*/,
@@ -175,39 +185,8 @@ struct ContentView: View {
             // Sort the results based upon the direction of the result
             let sortedCombinedResults = resultsOfTaskCalculation.sorted(by: { $0.0 > $1.0 })
             
+            await updateBesselArray(array: sortedCombinedResults)
             
-            
-//            var guessString = ""
-//            
-//            for item in sortedCombinedResults{
-//                
-//                // Display the sorted text in the GUI
-//                //await updateGUI(text: "\(item.1)")
-//                
-//                guessString += String(format: "x = %f", item.xValue)
-//                guessString += " "
-//                guessString += item.direction
-//                guessString += " "
-//                guessString += String(format: "Bessel = %7.5e", item.besselValue)
-//                guessString += "\n"
-//                
-//
-//
-//
- //           }
-            
-            let test = await myResults.appendArrays(arrayToAppend: sortedCombinedResults)
- //           await updateBesselArray(array: sortedCombinedResults)
- //           await updateGUI(text: guessString)
-            
-            
-            await updateBesselArray(array: test)
-            
-            print(test.count, besselResultArray.count)
-            
-            
-        }
-        
         return
     }
     
@@ -225,7 +204,13 @@ struct ContentView: View {
         
         besselResultArray += array
         
-        print(besselResultArray)
+    }
+    
+    @MainActor func clearBesselArray(){
+        
+        besselResultArray = []
+        
+       
         
     }
 
