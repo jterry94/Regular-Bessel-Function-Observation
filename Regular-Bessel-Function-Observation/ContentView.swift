@@ -65,6 +65,9 @@ struct ContentView: View {
     besselResultArray.removeAll()
         
     guess = String(format: "J%d(x)\n", order)
+    guess += "Start time \(Date())\n"
+    let startTime : DispatchTime = .now()
+        
     maxIndex = Int(((xmax-xmin)/step))+1
 
     let theMaxIndex = maxIndex
@@ -129,6 +132,10 @@ struct ContentView: View {
         
         
                     }
+        
+         guessString += "End time \(Date())\n"
+        let duration = startTime.distance(to: .now())
+        guessString += "Elapsed time \(duration)\n"
         
         // Display the sorted text in the GUI
                    
