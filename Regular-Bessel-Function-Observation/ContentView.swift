@@ -27,7 +27,11 @@ struct ContentView: View {
                 TextEditor(text: $guess)
 
                 
-                Button("Calculate Bessel Functions", action: calculateBesselFunc)
+                Button("Calculate Bessel Functions", action: 
+                    
+                    calculateBesselFunc
+                
+                )
                     }
             .frame(minHeight: 300, maxHeight: 800)
             .frame(minWidth: 480, maxWidth: 800)
@@ -53,8 +57,8 @@ struct ContentView: View {
     let xmax = 16.0                     /* max of x  */
     let xmin = 0.1                     /* min of x >0  */
     let step = 0.1                      /* delta x  */
-    let order = totalInput ?? 5                      /* order of Bessel function */
-    let start = order+25                      /* used for downward algorithm */
+    let order = totalInput!                      /* order of Bessel function */
+        let start = order + 25                      /* used for downward algorithm */
     //var x = 0.0
     var maxIndex = 0
         
