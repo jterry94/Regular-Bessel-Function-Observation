@@ -68,7 +68,7 @@ struct ContentView: View {
     Task{
     
         
-            let resultsOfTaskCalculation = await withTaskGroup(of: Int.self /* this is the return from the taskGroup*/,
+            let _ = await withTaskGroup(of: Int.self /* this is the return from the taskGroup*/,
                                                                returning: [Int].self /* this is the return of all of the results */,
                                                                body: { taskGroup in  /*This is the body of the task*/
                 
